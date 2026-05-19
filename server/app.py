@@ -17,7 +17,7 @@ from models import (
 )
 from sqlalchemy.exc import IntegrityError
 
-user_schema = UserSchema()
+user_schema = UserSchema(exclude=('tasks',))
 task_schema = TaskSchema()
 tasks_schema = TaskSchema(many=True)
 
