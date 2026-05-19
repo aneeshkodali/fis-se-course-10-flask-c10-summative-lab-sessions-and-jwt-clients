@@ -51,3 +51,8 @@ class User(db.Model):
 class UserSchema(Schema):
     id = fields.Int()
     username = fields.Str()
+    tasks = fields.Nested(
+        'TaskSchema',
+        many=True,
+        exclude=('user',)
+    )
