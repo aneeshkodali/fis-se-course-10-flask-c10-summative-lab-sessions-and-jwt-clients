@@ -1,4 +1,8 @@
 from config import app
+from models import (
+    User,
+    Task,
+)
 
 
 if __name__ == '__main__':
