@@ -21,7 +21,7 @@ class Task(db.Model):
         db.String,
         default='not started'
     )
-    due_date = db.Column(db.Date)
+    due_date = db.Column(db.String)
     user_id = db.Column(
         db.Integer,
         db.ForeignKey('users.id'),
@@ -65,7 +65,7 @@ class TaskSchema(Schema):
     description = fields.Str()
     priority = fields.Str()
     status = fields.Str()
-    due_date = fields.Date()
+    due_date = fields.Str()
     user_id = fields.Int()
 
     user = fields.Nested(
