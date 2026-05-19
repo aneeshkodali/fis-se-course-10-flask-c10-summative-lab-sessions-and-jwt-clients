@@ -22,6 +22,9 @@ task_schema = TaskSchema()
 tasks_schema = TaskSchema(many=True)
 
 def current_user():
+    '''
+    Find the logged-in user.
+    '''
 
     user_id = session.get('user_id')
 
@@ -33,6 +36,12 @@ def current_user():
 class Signup(Resource):
     def post(self):
         data = request.get_json() or {}
+
+        if not data.get('username') or not data.get('password'):
+            return make_response(
+                {'errors': ['Username and password are required.']},
+                422
+            )
 
         if data.get('password') != data.get('password_confirmation'):
             return make_response(
@@ -177,6 +186,7 @@ class TaskById(Resource):
                 401
             )
 
+        # filter by user
         task = Task.query.filter_by(id=id, user_id=user.id).first()
 
         if not task:
@@ -213,6 +223,7 @@ class TaskById(Resource):
                 401
             )
 
+        # filter by user
         task = Task.query.filter_by(id=id, user_id=user.id).first()
 
         if not task:
