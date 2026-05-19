@@ -1,1 +1,4 @@
-__pycache__
+cookies.txt
+server/instance/app.db
+__pycache__/
+*.pyc
