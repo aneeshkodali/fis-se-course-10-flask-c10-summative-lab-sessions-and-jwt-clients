@@ -32,7 +32,7 @@ def current_user():
 
 class Signup(Resource):
     def post(self):
-        data = request.get_json()
+        data = request.get_json() or {}
 
         if data.get('password') != data.get('password_confirmation'):
             return make_response(
@@ -62,7 +62,7 @@ class Signup(Resource):
 
 class Login(Resource):
     def post(self):
-        data = request.get_json()
+        data = request.get_json() or {}
 
         username = data.get('username')
         password = data.get('password')
@@ -142,7 +142,7 @@ class TaskIndex(Resource):
                 401
             )
 
-        data = request.get_json()
+        data = request.get_json() or {}
 
         try:
             task = Task(
@@ -185,7 +185,7 @@ class TaskById(Resource):
                 404
             )
 
-        data = request.get_json()
+        data = request.get_json() or {}
 
         try:
             for attr in ['title', 'description', 'priority', 'status', 'due_date']:
